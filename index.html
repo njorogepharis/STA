@@ -1,70 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Shiloh Transformation Assembly</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 text-green-900 font-sans">
+<body class="bg-white text-green-900 font-sans">
 
   <!-- Header Section -->
-  <div class="bg-gradient-to-r from-green-700 to-green-900 text-white text-center py-6">
-    <img src="https://drive.google.com/uc?export=view&id=1kzqJQAHZ-fQ2EbMw3V-6Qd5nRHev-M9R" alt="Church Logo" class="mx-auto h-32 w-auto mb-2">
+  <header class="text-center p-6 bg-green-100 shadow">
     <h1 class="text-3xl font-bold">Shiloh Transformation Assembly</h1>
-    <p class="italic text-lg mt-1">Where God is the Potter</p>
-  </div>
+    <p class="text-lg italic">Where God is the Potter</p>
+  </header>
 
-  <!-- Weekly Verse Section -->
-  <div class="max-w-3xl mx-auto my-6 p-6 bg-green-100 rounded shadow text-center">
-    <h2 class="text-2xl font-semibold text-green-800 mb-2">Weekly Verse</h2>
-    <p class="text-lg">"I am the vine, you are the branches. If you remain in me and I in you, you will bear much fruit..."</p>
-    <p class="italic">— John 15:5</p>
-  </div>
+  <!-- Images Section -->
+  <section class="flex flex-col md:flex-row items-center justify-center mt-6 space-y-4 md:space-y-0 md:space-x-8">
+    <div>
+      <img src="https://drive.google.com/file/d/1KxpIwQfGkGyww0iU-V8BKRvn8uQRIXo6/view?usp=drive_link" alt="Church Logo" class="w-48 h-auto mx-auto">
+    </div>
+    <div>
+      <img src="https://drive.google.com/file/d/1Pa3ZVOCiEXdjHpO8jjV6wV9JKZy_W2s4/view?usp=drive_link" alt="Pastors Photo" class="w-48 h-auto mx-auto">
+      <p class="text-center font-semibold mt-2">Pst Isaac and Esther Mwangi</p>
+    </div>
+  </section>
 
-  <!-- Weekly Focus Section -->
-  <div class="max-w-3xl mx-auto my-6 p-6 bg-green-100 rounded shadow text-center">
-    <h2 class="text-2xl font-semibold text-green-800 mb-2">Weekly Focus</h2>
-    <p class="text-lg">Remaining rooted in Christ through prayer and unity.</p>
-  </div>
-
-  <!-- Pastors Photo -->
-  <div class="max-w-sm mx-auto my-6">
-    <img src="https://drive.google.com/uc?export=view&id=1lfG9hN3rhLf0LbnQISX6iF_uNSzEEM9c" alt="Pastors Isaac and Esther Mwangi" class="rounded-lg shadow-md">
-    <p class="text-center mt-2 font-medium">Pst Isaac and Esther Mwangi</p>
-  </div>
-
-  <!-- Upcoming Events Section -->
-  <div class="max-w-4xl mx-auto my-10 p-6 bg-green-100 rounded shadow">
-    <h2 class="text-2xl font-semibold text-green-800 text-center mb-4">Upcoming Events</h2>
-    <ul class="list-disc list-inside text-lg">
-      <li><strong>Sunday Service</strong> – August 11, 2025</li>
-      <li><strong>Prayer and Worship Night</strong> – August 17, 2025</li>
-    </ul>
-  </div>
+  <!-- Events Section -->
+  <section class="mt-10 px-4 text-center">
+    <h2 class="text-2xl font-semibold mb-2">Upcoming Event</h2>
+    <div class="bg-green-50 border border-green-300 p-4 rounded shadow inline-block">
+      <h3 class="text-xl font-bold">Prayer Kesha</h3>
+      <p class="text-md mt-1">This Friday at 10PM</p>
+    </div>
+  </section>
 
   <!-- Facebook Video Embed -->
-  <div class="max-w-4xl mx-auto my-10 p-6 bg-white rounded shadow text-center">
-    <h2 class="text-2xl font-semibold text-green-800 mb-4">Watch Live or Recent Sermon</h2>
+  <section class="mt-10 px-4 text-center">
+    <h2 class="text-2xl font-semibold mb-4">Watch Live</h2>
     <div class="flex justify-center">
-      <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fweb.facebook.com%2Fpstimwangi%2Fvideos%2F721095700925441%2F&show_text=true&width=267&t=0"
-        width="267" height="591" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
-        allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-      </iframe>
+      <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fweb.facebook.com%2Fpstimwangi%2Fvideos%2F721095700925441%2F&show_text=true&width=267&t=0" width="267" height="591" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
     </div>
-  </div>
+  </section>
 
-  <!-- Contact Section -->
-  <div class="max-w-4xl mx-auto my-10 p-6 bg-green-100 rounded shadow text-center">
-    <h2 class="text-2xl font-semibold text-green-800 mb-4">Contact Us</h2>
-    <p class="text-lg">Phone: <a href="tel:+254713210707" class="text-green-700 font-semibold">+254 713 210707</a></p>
-    <p class="text-lg">Facebook: <a href="https://web.facebook.com/pstimwangi" class="text-blue-700 font-semibold" target="_blank">Shiloh Transformation Assembly Int'l</a></p>
-  </div>
+  <!-- Buttons Section -->
+  <section class="mt-10 px-4 text-center">
+    <h2 class="text-2xl font-semibold mb-4">Access</h2>
+    <div class="space-x-4">
+      <a href="members.html" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Members Login</a>
+      <a href="finance.html" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Finance Login</a>
+    </div>
+  </section>
 
-  <!-- Redirect Buttons -->
-  <div class="max-w-4xl mx-auto my-10 p-6 text-center">
-    <a href="https://your-members-site.com" class="inline-block bg-green-700 text-white px-6 py-3 rounded shadow hover:bg-green-800 mx-2">Members Info</a>
-    <a href="https://your-finance-site.com" class="inline-block bg-green-700 text-white px-6 py-3 rounded shadow hover:bg-green-800 mx-2">Finance Login</a>
-  </div>
+  <!-- Footer -->
+  <footer class="mt-10 text-center text-sm text-gray-500 pb-6">
+    &copy; 2025 Shiloh Transformation Assembly
+  </footer>
 
 </body>
 </html>
