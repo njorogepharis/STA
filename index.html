@@ -2,59 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Shiloh Transformation Assembly</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-white text-green-900 font-sans">
-
-  <!-- Header Section -->
-  <header class="text-center p-6 bg-green-100 shadow">
+  <!-- Header -->
+  <header class="bg-green-100 py-6 text-center">
     <h1 class="text-3xl font-bold">Shiloh Transformation Assembly</h1>
-    <p class="text-lg italic">Where God is the Potter</p>
+    <p class="italic">Where God is the Potter</p>
   </header>
 
-  <!-- Images Section -->
-  <section class="flex flex-col md:flex-row items-center justify-center mt-6 space-y-4 md:space-y-0 md:space-x-8">
-    <div>
-      <img src="https://drive.google.com/file/d/1KxpIwQfGkGyww0iU-V8BKRvn8uQRIXo6/view?usp=drive_link" alt="Church Logo" class="w-48 h-auto mx-auto">
+  <!-- Logo and Pastors -->
+  <section class="flex flex-col md:flex-row justify-center items-center gap-10 my-6">
+    <div class="text-center">
+      <img src="sta logo.jpg" alt="Church Logo" class="h-32 mx-auto mb-2">
     </div>
-    <div>
-      <img src="https://drive.google.com/file/d/1Pa3ZVOCiEXdjHpO8jjV6wV9JKZy_W2s4/view?usp=drive_link" alt="Pastors Photo" class="w-48 h-auto mx-auto">
-      <p class="text-center font-semibold mt-2">Pst Isaac and Esther Mwangi</p>
-    </div>
-  </section>
-
-  <!-- Events Section -->
-  <section class="mt-10 px-4 text-center">
-    <h2 class="text-2xl font-semibold mb-2">Upcoming Event</h2>
-    <div class="bg-green-50 border border-green-300 p-4 rounded shadow inline-block">
-      <h3 class="text-xl font-bold">Prayer Kesha</h3>
-      <p class="text-md mt-1">This Friday at 10PM</p>
+    <div class="text-center">
+      <img src="pastors.jpg" alt="Pastors Photo" class="h-32 mx-auto mb-2">
+      <p class="font-semibold">Pst Isaac and Esther Mwangi</p>
     </div>
   </section>
 
-  <!-- Facebook Video Embed -->
-  <section class="mt-10 px-4 text-center">
-    <h2 class="text-2xl font-semibold mb-4">Watch Live</h2>
+  <!-- Weekly Verse -->
+  <section class="text-center my-6">
+    <h2 class="text-2xl font-bold mb-2">Weekly Verse</h2>
+    <blockquote class="italic max-w-xl mx-auto">
+      “I am the vine; you are the branches. If you remain in me and I in you, you will bear much fruit; apart from me you can do nothing.”<br>
+      <span class="block mt-2">– John 15:5</span>
+    </blockquote>
+  </section>
+
+  <!-- Upcoming Event -->
+  <section class="text-center my-6">
+    <h2 class="text-2xl font-bold mb-2">Upcoming Event</h2>
+    <div class="inline-block border border-green-300 rounded p-4 shadow">
+      <h3 class="text-lg font-semibold">Prayer Kesha</h3>
+      <p class="text-sm text-gray-700">This Friday at 10PM</p>
+    </div>
+  </section>
+
+  <!-- Facebook Live -->
+  <section class="text-center my-10">
+    <h2 class="text-2xl font-bold mb-4">Watch Live</h2>
     <div class="flex justify-center">
-      <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fweb.facebook.com%2Fpstimwangi%2Fvideos%2F721095700925441%2F&show_text=true&width=267&t=0" width="267" height="591" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+      <iframe 
+        src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fweb.facebook.com%2Fpstimwangi%2Fvideos%2F721095700925441%2F&show_text=true&width=267&t=0" 
+        width="267" 
+        height="591" 
+        style="border:none;overflow:hidden" 
+        scrolling="no" 
+        frameborder="0" 
+        allowfullscreen="true" 
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+      ></iframe>
     </div>
   </section>
-
-  <!-- Buttons Section -->
-  <section class="mt-10 px-4 text-center">
-    <h2 class="text-2xl font-semibold mb-4">Access</h2>
-    <div class="space-x-4">
-      <a href="members.html" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Members Login</a>
-      <a href="finance.html" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Finance Login</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="mt-10 text-center text-sm text-gray-500 pb-6">
-    &copy; 2025 Shiloh Transformation Assembly
-  </footer>
-
 </body>
 </html>
