@@ -2,127 +2,153 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Shiloh Members</title>
+  <title>Members - Shiloh Transformation Assembly</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    const password = "Shiloh707";
-    let endpoint = "YOUR_WEB_APP_URL"; // Replace this with the deployed Apps Script Web App URL
+  <style>
+    .hidden { display: none; }
+  </style>
+</head>
+<body class="bg-white text-green-900 font-sans">
 
-    async function checkPassword() {
-      const entered = document.getElementById("password").value;
-      if (entered === password) {
-        document.getElementById("login-box").classList.add("hidden");
-        document.getElementById("members-panel").classList.remove("hidden");
+  <!-- Logo -->
+  <div class="text-center mt-6">
+    <img src="sta logo.jpg" alt="Church Logo" class="h-20 mx-auto mb-2">
+  </div>
+
+  <header class="text-center">
+    <h1 class="text-2xl font-bold">Shiloh Transformation Assembly</h1>
+    <p class="italic">Where God is the Potter</p>
+  </header>
+
+  <!-- Password Login -->
+  <section id="loginSection" class="text-center mt-8">
+    <h2 class="text-xl font-bold mb-2">Members Access</h2>
+    <input type="password" id="password" placeholder="Enter Password" class="border p-2 rounded">
+    <button onclick="validatePassword()" class="bg-green-700 text-white px-4 py-2 rounded ml-2">Login</button>
+    <p id="loginError" class="text-red-600 mt-2 hidden">Incorrect password. Try again.</p>
+  </section>
+
+  <!-- Members Content -->
+  <section id="membersSection" class="hidden px-4 mt-10">
+    <h2 class="text-xl font-bold text-center mb-4">Member Records</h2>
+
+    <!-- Add/Update Member -->
+    <div class="max-w-xl mx-auto mb-10">
+      <h3 class="text-lg font-semibold mb-2">Add or Update Member</h3>
+      <form id="memberForm" class="grid gap-2">
+        <input type="hidden" id="memberId">
+        <input type="text" id="fullName" placeholder="Full Name" class="border p-2 rounded">
+        <input type="text" id="team" placeholder="Team" class="border p-2 rounded">
+        <input type="text" id="phone" placeholder="Phone Number" class="border p-2 rounded">
+        <input type="date" id="dateJoined" class="border p-2 rounded">
+        <input type="text" id="notes" placeholder="Notes" class="border p-2 rounded">
+        <input type="password" id="actionPassword" placeholder="Enter Password to Save" class="border p-2 rounded">
+        <button type="submit" class="bg-green-800 text-white py-2 rounded">Save</button>
+      </form>
+    </div>
+
+    <!-- Members Table -->
+    <div class="overflow-x-auto">
+      <table class="min-w-full border border-green-300">
+        <thead>
+          <tr class="bg-green-200">
+            <th class="border px-2 py-1">ID</th>
+            <th class="border px-2 py-1">Name</th>
+            <th class="border px-2 py-1">Team</th>
+            <th class="border px-2 py-1">Phone</th>
+            <th class="border px-2 py-1">Date Joined</th>
+            <th class="border px-2 py-1">Notes</th>
+            <th class="border px-2 py-1">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="membersTableBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <script>
+    const sheetURL = "https://script.google.com/macros/s/AKfycbyX-Mol-CULrgtW18_wfrEbkTFYyxaqPeSHDp1joZhfQTsYofVBwkhbgD9gBgcMXvrBAA/exec";
+    const accessPassword = "Shiloh707";
+
+    function validatePassword() {
+      const input = document.getElementById("password").value;
+      if (input === accessPassword) {
+        document.getElementById("loginSection").classList.add("hidden");
+        document.getElementById("membersSection").classList.remove("hidden");
         loadMembers();
       } else {
-        alert("Incorrect password!");
+        document.getElementById("loginError").classList.remove("hidden");
       }
     }
 
     async function loadMembers() {
-      const res = await fetch(endpoint + "?action=view");
+      const res = await fetch(sheetURL + "?action=read");
       const data = await res.json();
-      const tbody = document.getElementById("member-body");
+      const tbody = document.getElementById("membersTableBody");
       tbody.innerHTML = "";
-      data.forEach((row, index) => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td class="border px-2">${row["Member ID"]}</td>
-          <td class="border px-2">${row["Full Name"]}</td>
-          <td class="border px-2">${row["Team"]}</td>
-          <td class="border px-2">${row["Phone Number"]}</td>
-          <td class="border px-2">${row["Date Joined"]}</td>
-          <td class="border px-2">${row["Notes"]}</td>
-          <td class="border px-2">
-            <button onclick='editMember(${index})' class="text-blue-600">Edit</button> |
-            <button onclick='deleteMember(${row["Member ID"]})' class="text-red-600">Delete</button>
+      data.forEach((member, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td class="border px-2 py-1">${member["Member ID"]}</td>
+          <td class="border px-2 py-1">${member["Full Name"]}</td>
+          <td class="border px-2 py-1">${member.Team}</td>
+          <td class="border px-2 py-1">${member["Phone Number"]}</td>
+          <td class="border px-2 py-1">${member["Date Joined"]}</td>
+          <td class="border px-2 py-1">${member.Notes}</td>
+          <td class="border px-2 py-1 space-x-2">
+            <button onclick='editMember(${JSON.stringify(member)})' class="text-blue-700">Edit</button>
+            <button onclick='deleteMember("${member["Member ID"]}")' class="text-red-700">Delete</button>
           </td>
         `;
-        tbody.appendChild(tr);
+        tbody.appendChild(row);
       });
     }
 
-    async function addMember() {
-      const member = {
-        name: document.getElementById("name").value,
-        team: document.getElementById("team").value,
-        phone: document.getElementById("phone").value,
-        dateJoined: document.getElementById("dateJoined").value,
-        notes: document.getElementById("notes").value,
-      };
-
-      const res = await fetch(endpoint, {
-        method: "POST",
-        body: JSON.stringify({ action: "add", member }),
-      });
-      const msg = await res.text();
-      alert(msg);
-      loadMembers();
+    function editMember(member) {
+      document.getElementById("memberId").value = member["Member ID"];
+      document.getElementById("fullName").value = member["Full Name"];
+      document.getElementById("team").value = member.Team;
+      document.getElementById("phone").value = member["Phone Number"];
+      document.getElementById("dateJoined").value = member["Date Joined"];
+      document.getElementById("notes").value = member.Notes;
+      window.scrollTo(0, 0);
     }
 
     async function deleteMember(id) {
-      if (!confirm("Delete this member?")) return;
-      const res = await fetch(endpoint, {
-        method: "POST",
-        body: JSON.stringify({ action: "delete", id }),
-      });
-      const msg = await res.text();
-      alert(msg);
+      const pw = prompt("Enter password to delete:");
+      if (pw !== accessPassword) return alert("Incorrect password!");
+      const res = await fetch(sheetURL + `?action=delete&id=${id}`);
+      const result = await res.text();
+      alert(result);
       loadMembers();
     }
 
-    function editMember(index) {
-      alert("Edit functionality coming soon!");
-    }
+    document.getElementById("memberForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const pw = document.getElementById("actionPassword").value;
+      if (pw !== accessPassword) return alert("Incorrect password!");
+
+      const payload = {
+        id: document.getElementById("memberId").value,
+        name: document.getElementById("fullName").value,
+        team: document.getElementById("team").value,
+        phone: document.getElementById("phone").value,
+        date: document.getElementById("dateJoined").value,
+        notes: document.getElementById("notes").value,
+        action: "save"
+      };
+
+      const res = await fetch(sheetURL, {
+        method: "POST",
+        body: JSON.stringify(payload)
+      });
+
+      const result = await res.text();
+      alert(result);
+      document.getElementById("memberForm").reset();
+      loadMembers();
+    });
   </script>
-</head>
-<body class="bg-gray-100 text-green-900 font-sans">
-
-  <!-- Login -->
-  <div id="login-box" class="flex justify-center items-center h-screen">
-    <div class="bg-white p-6 rounded shadow-md text-center">
-      <h2 class="text-xl font-bold mb-4">Members Access</h2>
-      <input id="password" type="password" placeholder="Enter Password" class="border p-2 w-full mb-4" />
-      <button onclick="checkPassword()" class="bg-green-700 text-white px-4 py-2 rounded">Login</button>
-    </div>
-  </div>
-
-  <!-- Members Panel -->
-  <div id="members-panel" class="hidden p-6">
-    <h1 class="text-2xl font-bold text-center mb-4">Shiloh Members</h1>
-
-    <!-- Add Member -->
-    <div class="bg-white p-4 rounded shadow mb-6">
-      <h2 class="font-bold mb-2">Add New Member</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <input id="name" type="text" placeholder="Full Name" class="border p-2" />
-        <input id="team" type="text" placeholder="Team" class="border p-2" />
-        <input id="phone" type="text" placeholder="Phone Number" class="border p-2" />
-        <input id="dateJoined" type="date" class="border p-2" />
-        <input id="notes" type="text" placeholder="Notes" class="border p-2 col-span-2" />
-      </div>
-      <button onclick="addMember()" class="bg-green-700 text-white px-4 py-2 mt-4 rounded">Add Member</button>
-    </div>
-
-    <!-- View Members -->
-    <div class="bg-white p-4 rounded shadow">
-      <h2 class="font-bold mb-2">All Members</h2>
-      <table class="w-full border text-sm">
-        <thead>
-          <tr class="bg-green-100">
-            <th class="border px-2">ID</th>
-            <th class="border px-2">Name</th>
-            <th class="border px-2">Team</th>
-            <th class="border px-2">Phone</th>
-            <th class="border px-2">Joined</th>
-            <th class="border px-2">Notes</th>
-            <th class="border px-2">Action</th>
-          </tr>
-        </thead>
-        <tbody id="member-body"></tbody>
-      </table>
-    </div>
-  </div>
 
 </body>
 </html>
